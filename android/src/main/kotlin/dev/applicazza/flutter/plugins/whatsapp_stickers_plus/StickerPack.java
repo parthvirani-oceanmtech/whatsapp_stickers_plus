@@ -32,8 +32,8 @@ class StickerPack implements Parcelable {
     private boolean isWhitelisted;
 
     StickerPack(String identifier, String name, String publisher, String trayImageFile, String publisherEmail,
-            String publisherWebsite, String privacyPolicyWebsite, String licenseAgreementWebsite,
-            String imageDataVersion, boolean avoidCache) {
+                String publisherWebsite, String privacyPolicyWebsite, String licenseAgreementWebsite,
+                String imageDataVersion, boolean avoidCache, String playStoreURL, String appStoreURL) {
         this.identifier = identifier;
         this.name = name;
         this.publisher = publisher;
@@ -44,6 +44,8 @@ class StickerPack implements Parcelable {
         this.licenseAgreementWebsite = licenseAgreementWebsite;
         this.imageDataVersion = imageDataVersion;
         this.avoidCache = avoidCache;
+        this.androidPlayStoreLink = playStoreURL;
+        this.iosAppStoreLink = appStoreURL;
     }
 
     void setIsWhitelisted(boolean isWhitelisted) {

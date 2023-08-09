@@ -13,6 +13,8 @@ class WhatsappStickers {
   String? publisherWebsite;
   String? privacyPolicyWebsite;
   String? licenseAgreementWebsite;
+  String playstoreURL;
+  String appstoreURL;
 
   WhatsappStickers({
     required this.identifier,
@@ -22,6 +24,8 @@ class WhatsappStickers {
     this.publisherWebsite,
     this.privacyPolicyWebsite,
     this.licenseAgreementWebsite,
+    required this.playstoreURL,
+    required this.appstoreURL,
   });
 
   void addSticker(WhatsappStickerImage image, List<String> emojis) {
@@ -39,6 +43,8 @@ class WhatsappStickers {
       payload['privacyPolicyWebsite'] = privacyPolicyWebsite;
       payload['licenseAgreementWebsite'] = licenseAgreementWebsite;
       payload['stickers'] = _stickers;
+      payload['play_store_link'] = playstoreURL;
+      payload['app_store_link'] = appstoreURL;
       await _channel.invokeMethod('sendToWhatsApp', payload);
     } on PlatformException catch (e) {
       switch (e.code.toUpperCase()) {
