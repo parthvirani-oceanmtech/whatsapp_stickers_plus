@@ -114,7 +114,7 @@ public class StickerContentProvider extends ContentProvider {
 
     @Override
     public Cursor query(@NonNull Uri uri, @Nullable String[] projection, String selection,
-            String[] selectionArgs, String sortOrder) {
+                        String[] selectionArgs, String sortOrder) {
         final int code = MATCHER.match(uri);
         if (code == METADATA_CODE) {
             return getPackForAllStickerPacks(uri);
@@ -173,9 +173,7 @@ public class StickerContentProvider extends ContentProvider {
     }
 
     private List<StickerPack> getStickerPackList() {
-        if (stickerPackList == null) {
-            readContentFile(Objects.requireNonNull(getContext()));
-        }
+        readContentFile(Objects.requireNonNull(getContext()));
         return stickerPackList;
     }
 
@@ -197,7 +195,7 @@ public class StickerContentProvider extends ContentProvider {
     @NonNull
     private Cursor getStickerPackInfo(@NonNull Uri uri, @NonNull List<StickerPack> stickerPackList) {
         MatrixCursor cursor = new MatrixCursor(
-                new String[] {
+                new String[]{
                         STICKER_PACK_IDENTIFIER_IN_QUERY,
                         STICKER_PACK_NAME_IN_QUERY,
                         STICKER_PACK_PUBLISHER_IN_QUERY,
@@ -234,11 +232,11 @@ public class StickerContentProvider extends ContentProvider {
     private Cursor getStickersForAStickerPack(@NonNull Uri uri) {
         final String identifier = uri.getLastPathSegment();
         MatrixCursor cursor = new MatrixCursor(
-                new String[] { STICKER_FILE_NAME_IN_QUERY, STICKER_FILE_EMOJI_IN_QUERY });
+                new String[]{STICKER_FILE_NAME_IN_QUERY, STICKER_FILE_EMOJI_IN_QUERY});
         for (StickerPack stickerPack : getStickerPackList()) {
             if (identifier.equals(stickerPack.identifier)) {
                 for (Sticker sticker : stickerPack.getStickers()) {
-                    cursor.addRow(new Object[] { sticker.imageFileName, TextUtils.join(",", sticker.emojis) });
+                    cursor.addRow(new Object[]{sticker.imageFileName, TextUtils.join(",", sticker.emojis)});
                 }
             }
         }
@@ -278,7 +276,7 @@ public class StickerContentProvider extends ContentProvider {
     }
 
     private AssetFileDescriptor fetchFile(@NonNull final Uri uri, @NonNull final AssetManager am,
-            @NonNull final String fileName, @NonNull final String identifier) {
+                                          @NonNull final String fileName, @NonNull final String identifier) {
         return (fileName.contains("_MZN_AD_")) ? fetchAssetFile(uri, am, fileName, identifier)
                 : fetchNonAssetFile(uri, fileName, identifier);
     }
@@ -297,7 +295,7 @@ public class StickerContentProvider extends ContentProvider {
     }
 
     private AssetFileDescriptor fetchAssetFile(@NonNull final Uri uri, @NonNull final AssetManager am,
-            @NonNull final String fileName, @NonNull final String identifier) {
+                                               @NonNull final String fileName, @NonNull final String identifier) {
         try {
             String fname = fileName.replace("_MZN_AD_", File.separator);
             String f = "flutter_assets/" + fname;
@@ -321,7 +319,7 @@ public class StickerContentProvider extends ContentProvider {
 
     @Override
     public int update(@NonNull Uri uri, ContentValues values, String selection,
-            String[] selectionArgs) {
+                      String[] selectionArgs) {
         throw new UnsupportedOperationException("Not supported");
     }
 }
