@@ -135,7 +135,7 @@ class StickerPackLoader {
     private static List<Sticker> fetchFromContentProviderForStickers(String identifier, Context context) {
         Uri uri = getStickerListUri(context, identifier);
         ContentResolver contentResolver = context.getContentResolver();
-        final String[] projection = { STICKER_FILE_NAME_IN_QUERY, STICKER_FILE_EMOJI_IN_QUERY };
+        final String[] projection = {STICKER_FILE_NAME_IN_QUERY, STICKER_FILE_EMOJI_IN_QUERY};
         final Cursor cursor = contentResolver.query(uri, projection, null, null, null);
         List<Sticker> stickers = new ArrayList<>();
         if (cursor != null && cursor.getCount() > 0) {
@@ -175,7 +175,7 @@ class StickerPackLoader {
     }
 
     static private AssetFileDescriptor fetchAssetFile(@NonNull final AssetManager am,
-            @NonNull final String fileName) {
+                                                      @NonNull final String fileName) {
         try {
             String fname = fileName.replace("_MZN_AD_", File.separator);
             String f = "flutter_assets/" + fname;

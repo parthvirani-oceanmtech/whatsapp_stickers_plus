@@ -60,7 +60,7 @@ public class ConfigFileManager {
         String playStoreURL = call.argument("play_store_url");
         String appStoreUrl = call.argument("app_store_url");
         StickerPack newStickerPack = new StickerPack(identifier, name, publisher, trayImageFileName, "",
-                publisherWebsite, privacyPolicyWebsite, licenseAgreementWebsite, "1", false, playStoreURL, appStoreUrl);
+                publisherWebsite, privacyPolicyWebsite, licenseAgreementWebsite, "1", false);
         List<Sticker> newStickers = new ArrayList<Sticker>();
         assert stickers != null;
         for (Map.Entry<String, List<String>> entry : stickers.entrySet()) {
@@ -69,8 +69,8 @@ public class ConfigFileManager {
             newStickers.add(s);
         }
         newStickerPack.setStickers(newStickers);
-//        newStickerPack.setAndroidPlayStoreLink("");
-//        newStickerPack.setIosAppStoreLink("");
+        newStickerPack.setAndroidPlayStoreLink(playStoreURL);
+        newStickerPack.setIosAppStoreLink(appStoreUrl);
         return newStickerPack;
     }
 
