@@ -57,8 +57,8 @@ public class ConfigFileManager {
         String privacyPolicyWebsite = call.argument("privacyPolicyWebsite");
         String licenseAgreementWebsite = call.argument("licenseAgreementWebsite");
         Map<String, List<String>> stickers = call.argument("stickers");
-        String playStoreURL = call.argument("play_store_url");
-        String appStoreUrl = call.argument("app_store_url");
+        String playStoreURL = call.argument("play_store_link");
+        String appStoreUrl = call.argument("app_store_link");
         StickerPack newStickerPack = new StickerPack(identifier, name, publisher, trayImageFileName, "",
                 publisherWebsite, privacyPolicyWebsite, licenseAgreementWebsite, "1", false);
         List<Sticker> newStickers = new ArrayList<Sticker>();
