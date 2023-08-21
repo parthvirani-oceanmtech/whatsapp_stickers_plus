@@ -75,6 +75,41 @@ class WhatsappStickers {
       }
     }
   }
+
+  Future<void> isStickerPackInstalled() async {
+    try {
+      final payload = <String, dynamic>{};
+      payload['identifier'] = identifier;
+      await _channel.invokeMethod('isStickerPackInstalled', payload);
+    } on PlatformException catch (e) {
+      switch (e.code.toUpperCase()) {
+        case WhatsappStickersFileNotFoundException.code:
+          throw WhatsappStickersFileNotFoundException(e.message);
+        case WhatsappStickersNumOutsideAllowableRangeException.code:
+          throw WhatsappStickersNumOutsideAllowableRangeException(e.message);
+        case WhatsappStickersUnsupportedImageFormatException.code:
+          throw WhatsappStickersUnsupportedImageFormatException(e.message);
+        case WhatsappStickersImageTooBigException.code:
+          throw WhatsappStickersImageTooBigException(e.message);
+        case WhatsappStickersIncorrectImageSizeException.code:
+          throw WhatsappStickersIncorrectImageSizeException(e.message);
+        case WhatsappStickersAnimatedImagesNotSupportedException.code:
+          throw WhatsappStickersAnimatedImagesNotSupportedException(e.message);
+        case WhatsappStickersTooManyEmojisException.code:
+          throw WhatsappStickersTooManyEmojisException(e.message);
+        case WhatsappStickersEmptyStringException.code:
+          throw WhatsappStickersEmptyStringException(e.message);
+        case WhatsappStickersStringTooLongException.code:
+          throw WhatsappStickersStringTooLongException(e.message);
+        case WhatsappStickersAlreadyAddedException.code:
+          throw WhatsappStickersAlreadyAddedException(e.message);
+        case WhatsappStickersCancelledException.code:
+          throw WhatsappStickersCancelledException(e.message);
+        default:
+          throw WhatsappStickersException(e.message);
+      }
+    }
+  }
 }
 
 class WhatsappStickerImage {
