@@ -76,11 +76,11 @@ class WhatsappStickers {
     }
   }
 
-  Future<void> isStickerPackInstalled() async {
+  Future<bool?> isStickerPackInstalled() async {
     try {
       final payload = <String, dynamic>{};
       payload['identifier'] = identifier;
-      await _channel.invokeMethod('isStickerPackInstalled', payload);
+      return (await _channel.invokeMethod('isStickerPackInstalled', payload));
     } on PlatformException catch (e) {
       switch (e.code.toUpperCase()) {
         case WhatsappStickersFileNotFoundException.code:
