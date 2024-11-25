@@ -36,16 +36,18 @@ android {
     lintOptions {
         disable 'InvalidPackage'
     }
-}
-
-compileOptions {
+    
+    compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17
     }
     
-kotlinOptions {
+    kotlinOptions {
         jvmTarget = "17"
     }
+}
+
+
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
